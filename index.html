@@ -1,722 +1,833 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protect Our Planet | Environmental Conservation</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2E7D32', // Deep green
+            secondary: '#0288D1', // Bright blue
+            accent: '#FFC107', // Earth yellow
+            dark: '#1A237E', // Dark blue
+            light: '#E8F5E9', // Light green
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      }
+      .bg-blur {
+        backdrop-filter: blur(8px);
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    }
+  </style>
+  
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stats-counter {
+      transition: all 2s ease;
+    }
+  </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+
+<body class="font-inter text-gray-800 overflow-x-hidden">
+  <!-- Navigation -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+          <i class="fa fa-globe text-white text-xl"></i>
         </div>
-    </header>
+        <span class="text-2xl font-bold text-white text-shadow">EcoGuardian</span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="#about" class="text-white hover:text-accent transition-colors duration-300 font-medium">About</a>
+        <a href="#environment" class="text-white hover:text-accent transition-colors duration-300 font-medium">Environment</a>
+        <a href="#climate" class="text-white hover:text-accent transition-colors duration-300 font-medium">Climate</a>
+        <a href="#planet" class="text-white hover:text-accent transition-colors duration-300 font-medium">Planet</a>
+        <a href="#action" class="text-white hover:text-accent transition-colors duration-300 font-medium">Take Action</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden text-white text-2xl focus:outline-none">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="md:hidden bg-white/90 bg-blur hidden">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <a href="#about" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium py-2">About</a>
+        <a href="#environment" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium py-2">Environment</a>
+        <a href="#climate" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium py-2">Climate</a>
+        <a href="#planet" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium py-2">Planet</a>
+        <a href="#action" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium py-2">Take Action</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+  <!-- Hero Section -->
+  <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://picsum.photos/id/10/1920/1080" alt="Beautiful Earth" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-dark/80 to-primary/70"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10 text-center">
+      <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-extrabold text-white leading-tight text-shadow-lg mb-6">
+        Protect Our <span class="text-accent">Planet</span>
+      </h1>
+      <p class="text-[clamp(1.1rem,3vw,1.5rem)] text-white/90 max-w-3xl mx-auto mb-10 text-shadow">
+        Join the global movement to preserve our environment, combat climate change, and secure a sustainable future for all.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#action" class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+          Take Action
+        </a>
+        <a href="#about" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 border border-white/40">
+          Learn More
+        </a>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+      <a href="#about" class="flex flex-col items-center">
+        <span class="mb-2 font-medium">Scroll Down</span>
+        <i class="fa fa-chevron-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-light">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-4">Our Planet in Crisis</h2>
+        <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          The Earth is facing unprecedented environmental challenges. From climate change to deforestation, our actions have put our planet at risk.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl reveal">
+          <div class="h-48 overflow-hidden">
+            <img src="https://picsum.photos/id/1015/600/400" alt="Pollution" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <i class="fa fa-pagelines text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Environmental Degradation</h3>
+            <p class="text-gray-600">
+              Our natural resources are being depleted at an alarming rate, threatening biodiversity and ecosystems worldwide.
+            </p>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl reveal" style="transition-delay: 0.2s">
+          <div class="h-48 overflow-hidden">
+            <img src="https://picsum.photos/id/1039/600/400" alt="Climate Change" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+              <i class="fa fa-cloud text-secondary text-xl"></i>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+            <h3 class="text-xl font-bold mb-3">Climate Crisis</h3>
+            <p class="text-gray-600">
+              Global temperatures are rising, causing extreme weather events, melting ice caps, and rising sea levels.
+            </p>
+          </div>
         </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl reveal" style="transition-delay: 0.4s">
+          <div class="h-48 overflow-hidden">
+            <img src="https://picsum.photos/id/1024/600/400" alt="Earth" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+              <i class="fa fa-globe text-accent text-xl"></i>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
+            <h3 class="text-xl font-bold mb-3">Planetary Health</h3>
+            <p class="text-gray-600">
+              The health of our planet directly impacts human well-being, with environmental issues affecting food security and public health.
+            </p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+  <!-- Environment Section -->
+  <section id="environment" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2 reveal">
+          <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-6">Protect Our Environment</h2>
+          <div class="w-24 h-1 bg-primary mb-8"></div>
+          <p class="text-lg text-gray-600 mb-6">
+            Our natural environment provides essential resources and ecosystem services that sustain all life on Earth. Protecting it is crucial for current and future generations.
+          </p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+              <span>Preserve biodiversity and protect endangered species</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+              <span>Reduce pollution of air, water, and soil</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+              <span>Promote sustainable use of natural resources</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+              <span>Support reforestation and habitat restoration efforts</span>
+            </li>
+          </ul>
+          <a href="#action" class="inline-block bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+            How to Help
+          </a>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+        
+        <div class="lg:w-1/2 reveal">
+          <div class="relative">
+            <img src="https://picsum.photos/id/1018/800/600" alt="Beautiful nature landscape" class="w-full h-auto rounded-2xl shadow-xl">
+            <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg max-w-xs">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                  <i class="fa fa-tree text-primary"></i>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
+                <h4 class="font-bold">Deforestation Alert</h4>
+              </div>
+              <p class="text-gray-600 text-sm">
+                We lose 18.7 million acres of forests annually, equivalent to 27 soccer fields every minute.
+              </p>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+  <!-- Climate Section -->
+  <section id="climate" class="py-20 bg-gradient-to-br from-dark to-secondary text-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4">Combat Climate Change</h2>
+        <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+        <p class="text-lg text-white/80 max-w-3xl mx-auto">
+          Climate change is the defining challenge of our time. Urgent action is needed to reduce greenhouse gas emissions and build resilience.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl">
+            <h3 class="text-2xl font-bold mb-6">Global Temperature Rise</h3>
+            <p class="mb-6 text-white/80">
+              Average global temperatures have increased by 1.1°C since pre-industrial times. Continued warming will have severe consequences.
+            </p>
+            <div class="h-80">
+              <canvas id="temperatureChart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="space-y-8 reveal">
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl transform transition-all duration-300 hover:bg-white/15">
+            <div class="flex items-start">
+              <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mr-4 mt-1">
+                <i class="fa fa-bolt text-accent text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Transition to Renewable Energy</h4>
+                <p class="text-white/80">
+                  Shifting from fossil fuels to clean, renewable energy sources is critical for reducing carbon emissions.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl transform transition-all duration-300 hover:bg-white/15">
+            <div class="flex items-start">
+              <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mr-4 mt-1">
+                <i class="fa fa-recycle text-accent text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Reduce, Reuse, Recycle</h4>
+                <p class="text-white/80">
+                  Adopting circular economy practices reduces waste and the carbon footprint of production.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl transform transition-all duration-300 hover:bg-white/15">
+            <div class="flex items-start">
+              <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mr-4 mt-1">
+                <i class="fa fa-users text-accent text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Advocate for Policy Change</h4>
+                <p class="text-white/80">
+                  Supporting strong climate policies and holding leaders accountable drives systemic change.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
+  <!-- Planet Section -->
+  <section id="planet" class="py-20 bg-light">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-4">Protect Our Earth</h2>
+        <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          The Earth is our only home. We must act as responsible stewards to ensure its health and vitality for future generations.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+        <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+            <i class="fa fa-water text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Protect Oceans</h3>
+          <p class="text-gray-600">
+            Reduce plastic waste and support marine conservation efforts to protect ocean ecosystems.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
+            <i class="fa fa-leaf text-secondary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Preserve Forests</h3>
+          <p class="text-gray-600">
+            Support sustainable forestry and reforestation initiatives to maintain vital carbon sinks.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+            <i class="fa fa-paw text-accent text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Protect Wildlife</h3>
+          <p class="text-gray-600">
+            Combat habitat loss and poaching to preserve biodiversity and maintain balanced ecosystems.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <div class="w-16 h-16 rounded-full bg-dark/10 flex items-center justify-center mx-auto mb-4">
+            <i class="fa fa-globe text-dark text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Sustainable Living</h3>
+          <p class="text-gray-600">
+            Adopt eco-friendly practices in daily life to reduce your environmental footprint.
+          </p>
+        </div>
+      </div>
+      
+      <div class="mt-20 bg-white rounded-2xl shadow-xl overflow-hidden reveal">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div class="p-8 lg:p-12 flex flex-col justify-center">
+            <h3 class="text-2xl font-bold mb-4">Our Planet's Vital Signs</h3>
+            <p class="text-gray-600 mb-8">
+              Monitoring key environmental indicators helps us understand the health of our planet and measure our progress.
+            </p>
             
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Carbon Dioxide Levels</span>
+                  <span class="text-primary font-bold stats-counter" data-target="420">0</span>
+                  <span class="font-medium">ppm</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Arctic Ice Loss</span>
+                  <span class="text-primary font-bold stats-counter" data-target="13.1">0</span>
+                  <span class="font-medium">% per decade</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-secondary h-2.5 rounded-full" style="width: 65%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Biodiversity Loss</span>
+                  <span class="text-primary font-bold stats-counter" data-target="1000000">0</span>
+                  <span class="font-medium">species at risk</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-accent h-2.5 rounded-full" style="width: 90%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="relative h-64 lg:h-auto">
+            <img src="https://picsum.photos/id/1025/800/600" alt="Earth from space" class="absolute inset-0 w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Take Action Section -->
+  <section id="action" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-4">Take Action Today</h2>
+        <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Every individual can make a difference. Here are ways you can contribute to protecting our environment, climate, and planet.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-light rounded-xl p-8 transform transition-all duration-300 hover:shadow-xl reveal">
+          <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-6">
+            <i class="fa fa-user text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Individual Actions</h3>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-3"></i>
+              <span>Reduce energy consumption at home</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-3"></i>
+              <span>Adopt a plant-based diet</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-3"></i>
+              <span>Use public transportation, bike, or walk</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-3"></i>
+              <span>Reduce single-use plastics</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-3"></i>
+              <span>Support eco-friendly products</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-light rounded-xl p-8 transform transition-all duration-300 hover:shadow-xl reveal" style="transition-delay: 0.2s">
+          <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-6">
+            <i class="fa fa-users text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Community Efforts</h3>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+              <span>Participate in local clean-up events</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+              <span>Join environmental organizations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+              <span>Plant trees and create green spaces</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+              <span>Educate others about environmental issues</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+              <span>Support community gardens</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-light rounded-xl p-8 transform transition-all duration-300 hover:shadow-xl reveal" style="transition-delay: 0.4s">
+          <div class="w-16 h-16 rounded-full bg-dark flex items-center justify-center mb-6">
+            <i class="fa fa-globe text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Global Impact</h3>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="fa fa-check text-dark mt-1 mr-3"></i>
+              <span>Advocate for strong climate policies</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-dark mt-1 mr-3"></i>
+              <span>Support renewable energy initiatives</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-dark mt-1 mr-3"></i>
+              <span>Donate to environmental organizations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-dark mt-1 mr-3"></i>
+              <span>Hold corporations accountable</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-dark mt-1 mr-3"></i>
+              <span>Vote for environmental protection</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-16 bg-primary/10 rounded-2xl p-8 md:p-12 text-center reveal">
+        <h3 class="text-2xl font-bold mb-4">Join Our Movement</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+          Sign up to receive updates, tips, and opportunities to get involved in environmental protection efforts.
+        </p>
+        
+        <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+          <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md whitespace-nowrap">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+              <i class="fa fa-globe text-white text-xl"></i>
+            </div>
+            <span class="text-2xl font-bold">EcoGuardian</span>
+          </div>
+          <p class="text-gray-400 mb-6">
+            Working together to protect our environment, combat climate change, and preserve our planet for future generations.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+            <li><a href="#environment" class="text-gray-400 hover:text-white transition-colors duration-300">Environment</a></li>
+            <li><a href="#climate" class="text-gray-400 hover:text-white transition-colors duration-300">Climate</a></li>
+            <li><a href="#planet" class="text-gray-400 hover:text-white transition-colors duration-300">Planet</a></li>
+            <li><a href="#action" class="text-gray-400 hover:text-white transition-colors duration-300">Take Action</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Articles</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Guides</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Events</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Reports</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Tools</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">info@ecoguardian.org</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-phone text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">+1 (555) 123-4567</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">123 Green Street, Earth City, EC 12345</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+        <p>&copy; 2023 EcoGuardian. All rights reserved. | Protecting our environment, climate, and planet.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 opacity-0 invisible">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenuButton.innerHTML = '<i class="fa fa-bars"></i>';
+      } else {
+        mobileMenuButton.innerHTML = '<i class="fa fa-times"></i>';
+      }
+    });
+    
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-gray-900/90', 'bg-blur', 'shadow-lg');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-gray-900/90', 'bg-blur', 'shadow-lg');
+        navbar.classList.add('bg-transparent');
+      }
+    });
+    
+    // Back to Top Button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.add('opacity-0', 'invisible');
+        backToTopButton.classList.remove('opacity-100', 'visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Reveal Animation on Scroll
+    function revealElements() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add('active');
         }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+      }
+    }
+    
+    window.addEventListener('scroll', revealElements);
+    window.addEventListener('load', revealElements);
+    
+    // Animate Counter Numbers
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stats-counter');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(animateCounters, 1);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      });
+    }
+    
+    // Initialize Temperature Chart
+    function initTemperatureChart() {
+      const ctx = document.getElementById('temperatureChart').getContext('2d');
+      
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['1850', '1900', '1950', '1970', '1990', '2010', '2023'],
+          datasets: [{
+            label: 'Temperature Anomaly (°C)',
+            data: [-0.4, -0.3, -0.1, 0.1, 0.4, 0.8, 1.1],
+            borderColor: '#FFC107',
+            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+            tension: 0.4,
+            fill: true,
+            pointBackgroundColor: '#FFC107',
+            pointBorderColor: '#fff',
+            pointRadius: 5,
+            pointHoverRadius: 7
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: false,
+              grid: {
+                color: 'rgba(255, 255, 255, 0.1)'
+              },
+              ticks: {
+                color: 'rgba(255, 255, 255, 0.7)'
+              }
+            },
+            x: {
+              grid: {
+                color: 'rgba(255, 255, 255, 0.1)'
+              },
+              ticks: {
+                color: 'rgba(255, 255, 255, 0.7)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: 'rgba(255, 255, 255, 0.9)'
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    // Initialize charts and counters when elements are visible
+    const observerOptions = {
+      threshold: 0.1
+    };
+    
+    const chartObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initTemperatureChart();
+          chartObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    if (document.getElementById('temperatureChart')) {
+      chartObserver.observe(document.getElementById('temperatureChart'));
+    }
+    
+    if (document.querySelector('.stats-counter')) {
+      counterObserver.observe(document.querySelector('.stats-counter').parentElement.parentElement.parentElement);
+    }
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.innerHTML = '<i class="fa fa-bars"></i>';
+      });
+    });
+  </script>
 </body>
-
 </html>
